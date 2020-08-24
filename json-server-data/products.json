@@ -1,0 +1,44 @@
+{
+  "allproducts": [
+    {
+      "productName": "Cameraa",
+      "productDescription": "High quality camera black colour",
+      "productPrice": "7900",
+      "quantity": "60",
+      "categoryName": "Electronics",
+      "inStock": "true",
+      "productImage": "https://images-na.ssl-images-amazon.com/images/I/914hFeTU2-L._SL1500_.jpg",
+      "id": 4
+    },
+    {
+      "productName": "Laptop",
+      "productDescription": "ASUS VivoBook 14 AMD Ryzen 3 3250U 14-inch FHD Compact",
+      "productPrice": "56787",
+      "quantity": "60",
+      "categoryName": "Electronics",
+      "inStock": "true",
+      "productImage": "https://images-na.ssl-images-amazon.com/images/I/81b4nLdmuzL._SL1500_.jpg",
+      "id": 6
+    },
+    {
+      "productName": "Headset",
+      "productDescription": "JBL C50HI in-Ear Headphones with Mic (Blue)",
+      "productPrice": "9000",
+      "quantity": "8",
+      "categoryName": "Electronics",
+      "inStock": "true",
+      "productImage": "https://images-na.ssl-images-amazon.com/images/I/617bCX7Y-aL._SL1500_.jpg",
+      "id": 7
+    },
+    {
+      "productName": "pro",
+      "productDescription": "kk",
+      "productPrice": "80",
+      "quantity": "80",
+      "categoryName": "Dress",
+      "inStock": "true",
+      "productImage": "https://images-na.ssl-images-amazon.com/images/I/51KpnzjcrLL._UL1500_.jpg",
+      "id": 8
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Image } from "react-native";
 import axios from "axios";
 
@@ -17,20 +17,17 @@ export default function PdpComponent(props) {
   const [show, setshow] = useState(false);
   const [stock, setstock] = useState(false);
 
-
-  
   let productdetails = props.route.params;
 
   useEffect(() => {
-    if(productdetails.instock==='true'){
-      setstock(true)
+    if (productdetails.instock === "true") {
+      setstock(true);
     }
-    if(productdetails.instock==='false'){
-      setstock(false)
+    if (productdetails.instock === "false") {
+      setstock(false);
     }
   }, []);
 
-  
   console.log(productdetails);
 
   console.log(props);
@@ -38,7 +35,7 @@ export default function PdpComponent(props) {
   const deleteFunction = (event) => {
     event.preventDefault();
     axios
-      .delete("http://localhost:3000/allproducts/" + productdetails.id)
+      .delete("http://192.168.1.39:3000/allproducts/" + productdetails.id)
       .then((res) => {
         console.log(res);
         setshow(true);
@@ -55,26 +52,27 @@ export default function PdpComponent(props) {
             style={{
               width: "auto",
               height: "auto",
-              border: "2px solid black",
+              borderColor: "black",
+              borderWidth: 2,
               backgroundColor: "maroon",
             }}
           >
             <Text
               style={{
-                fontSize: "30px",
+                fontSize: 30,
                 color: "white",
                 textAlign: "center",
-                fontFamily: "TimesNewRoman",
+                // fontFamily: "Times New Roman",
               }}
             >
               Deleted!!!!
             </Text>
             <Text
               style={{
-                fontSize: "25px",
+                fontSize: 25,
                 color: "white",
                 textAlign: "center",
-                fontFamily: "TimesNewRoman",
+                // fontFamily: "Times New Roman",
               }}
             >
               Product Successfully deleted
@@ -83,8 +81,8 @@ export default function PdpComponent(props) {
         )}
 
         {!show && (
-          <View>
-            <Text style={styles.title}>{productdetails.name}</Text>
+         <View>
+          <Text style={styles.title}>{productdetails.name}</Text> 
 
             <View
               style={{
@@ -93,28 +91,35 @@ export default function PdpComponent(props) {
                 margin: "auto",
                 textAlign: "center",
                 fontFamily: "arial",
-                borderRadius:'20px',
-                paddingBottom:'30px',
-                paddingHorizontal:'30px',
-                justifyContent:'center',
+                borderRadius: 20,
+                paddingBottom: 30,
+                paddingHorizontal: 30,
+                justifyContent: "center",
                 // marginRight:'10px',
                 // marginRight:'10px'
               }}
             >
               <Image
-                source={productdetails.image}
-                style={{ width: "100%", height: "200px" }}
+                source={{uri:productdetails.image}}
+                style={{ width: "100%", height: 200 }}
               />
-            
-              <Text style={{ color: "black", fontSize: "22px",fontWeight:'bold' }}>
+              
+              
+
+              <Text
+                style={{ color: "black", fontSize: 22, fontWeight: "bold" }}
+              >
                 ${productdetails.price}
               </Text>
               <Text>{productdetails.description}</Text>
+              <Text>Category:{productdetails.category}</Text>
               <Text>Quantity:{productdetails.quantity}</Text>
-            {stock && <Text style={{fontWeight:'bold'}}>In Stock</Text> }  
-            {!stock && <Text style={{fontWeight:'bold'}}>Out of Stock</Text> }  
+              {stock && <Text style={{ fontWeight: "bold" }}>In Stock</Text>}
+              {!stock && (
+                <Text style={{ fontWeight: "bold" }}>Out of Stock</Text>
+              )}
 
-              <Text>
+              
                 <TouchableOpacity
                   style={globalstyles.touchButtonContainer}
                   onPress={() => {
@@ -130,18 +135,22 @@ export default function PdpComponent(props) {
                     });
                   }}
                 >
-                  <Text style={{color:'white',fontWeight:'bold'}}>Edit</Text>
+                  <Text style={{ color: "white", fontWeight: "bold" }}>
+                    Edit
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={globalstyles.touchButtonContainer}
                   onPress={deleteFunction}
                 >
-                  <Text style={{color:'white',fontWeight:'bold'}}>Delete</Text>
+                  <Text style={{ color: "white", fontWeight: "bold" }}>
+                    Delete
+                  </Text>
                 </TouchableOpacity>
-              </Text>
+            
             </View>
-          </View>
-        )}
+            </View> 
+       )} 
       </View>
     </ScrollView>
   );
@@ -151,6 +160,6 @@ const styles = StyleSheet.create({
     color: "#05375a",
     fontSize: 30,
     fontWeight: "bold",
-    textAlign:'center'
+    textAlign: "center",
   },
 });

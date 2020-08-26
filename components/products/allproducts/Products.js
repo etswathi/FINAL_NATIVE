@@ -32,7 +32,7 @@ export default function ProductsComponent({ navigation }) {
   }, [isFocused]);
 
   const getAllProducts = () => {
-    axios.get("http://localhost:3000/allproducts").then((res) => {
+    axios.get(" http://192.168.1.39:3000/allproducts").then((res) => {
       console.log(res.data);
       setProducts(res.data);
       console.log(products);
@@ -82,14 +82,10 @@ export default function ProductsComponent({ navigation }) {
     <ScrollView>
       <View style={globalstyles.containerStyle}>
         <TextInput
+          style={styles.search}
           type="text"
           placeholder="Search Products"
           onChangeText={searchFunction}
-          style={{
-            border: "2px solid black",
-            width: "150px",
-            borderRadius: "10px",
-          }}
         />
         <TouchableOpacity
           style={globalstyles.touchButtonContainer}
@@ -124,7 +120,7 @@ export default function ProductsComponent({ navigation }) {
                         // quantity: p.quantity,
                       });
                     }}
-                    source={p.item.productImage}
+                    source={{uri:p.item.productImage}}
                     style={{
                       width: "50%",
                       height: 100,
@@ -133,7 +129,12 @@ export default function ProductsComponent({ navigation }) {
                     }}
                   />
 
-                  <Text style={{fontWeight:'bold',fontSize:'20px',fontFamily:'TimesNewRoman'}}
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                      fontFamily: "TimesNewRoman",
+                    }}
                     onPress={() => {
                       navigation.navigate("ProductDetail", {
                         id: p.item.id,
@@ -171,7 +172,7 @@ export default function ProductsComponent({ navigation }) {
               return (
                 <View style={{ flex: 1, flexDirection: "row" }}>
                   <Image
-                    source={p.item.productImage}
+                   source={{uri:p.item.productImage}}
                     style={{
                       width: "50%",
                       height: 100,
@@ -180,7 +181,12 @@ export default function ProductsComponent({ navigation }) {
                     }}
                   />
 
-                  <Text style={{fontWeight:'bold',fontSize:'20px',fontFamily:'TimesNewRoman'}}
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                      fontFamily: "TimesNewRoman",
+                    }}
                     onPress={() => {
                       navigation.navigate("ProductDetail", {
                         id: p.item.id,
@@ -207,9 +213,17 @@ export default function ProductsComponent({ navigation }) {
             }}
           />
         )}
-
-       
       </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  search: {
+    // border:"2px solid black",
+    width: 150,
+    borderRadius: 10,
+    borderBottomColor:'black',
+    borderWidth:2
+  },
+});

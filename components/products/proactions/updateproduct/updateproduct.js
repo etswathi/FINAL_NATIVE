@@ -9,6 +9,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Picker
 } from "react-native";
 import { Card, Button } from "react-bootstrap";
 import { Image } from "react-native";
@@ -94,7 +95,7 @@ export default function UpdateProductComponent(props) {
 
     axios
       .put(
-        "http://localhost:3000/allproducts/" + props.route.params.id,
+        "http://192.168.1.39:3000/allproducts/" + props.route.params.id,
         RequestBody
       )
       .then((res) => {
@@ -113,26 +114,27 @@ export default function UpdateProductComponent(props) {
           style={{
             width: "auto",
             height: "auto",
-            border: "2px solid black",
+            borderWidth:2,
+            borderColor:'black',
             backgroundColor: "green",
           }}
         >
           <Text
             style={{
-              fontSize: "30px",
+              fontSize: 30,
               color: "white",
               textAlign: "center",
-              fontFamily: "TimesNewRoman",
+              // fontFamily:"Times New Roman",
             }}
           >
             Updated!!!!
           </Text>
           <Text
             style={{
-              fontSize: "25px",
+              fontSize: 25,
               color: "white",
               textAlign: "center",
-              fontFamily: "TimesNewRoman",
+              // fontFamily: "Times New Roman",
             }}
           >
             Product Successfully updated
@@ -168,42 +170,59 @@ export default function UpdateProductComponent(props) {
           <View style={styles.action}>
             <TextInput
               placeholder="Product Price"
+              keyboardType={"numeric"}
               // numeric value
               // keyboardType={'numeric'}
               onChangeText={captureProductPrice}
+              
               style={styles.textInput}
               value={productPrice}
             ></TextInput>
           </View>
 
-          <View style={styles.action}>
-            <TextInput
-              placeholder="Product Categroy"
-              onChangeText={captureProductCategory}
-              style={styles.textInput}
-              value={categoryName}
-            ></TextInput>
-          </View>
+          <Picker
+                style={styles.action}
+                onValueChange={captureProductCategory}
+                value={categoryName}
+                selectedValue={categoryName}
+                // onValueChange={(value,itemIndex)=>{captureProductCategory(value)}}
+              >
+                <Picker.Item label="select category" value=""></Picker.Item>
+                <Picker.Item
+                  label="Electronics"
+                  value="Electronics"
+                ></Picker.Item>
+                <Picker.Item label="Dress" value="Dress"></Picker.Item>
+                <Picker.Item label="Kids" value="Kids"></Picker.Item>
+              </Picker>
 
           <View style={styles.action}>
             <TextInput
               placeholder="Quantity"
               //                 numeric value
-              //   keyboardType={'numeric'}
+                keyboardType={'numeric'}
               onChangeText={captureQuantity}
               style={styles.textInput}
               value={quantity}
             ></TextInput>
           </View>
 
-          <View style={styles.action}>
-            <TextInput
-              placeholder="In Stock"
-              onChangeText={captureInStock}
-              style={styles.textInput}
-              value={inStock}
-            ></TextInput>
-          </View>
+          <Picker
+                style={styles.action}
+                value={inStock}
+                selectedValue={inStock}
+                onValueChange={captureInStock}
+                // onValueChange={(value,itemIndex)=>{captureProductCategory(value)}}
+              > 
+              {/* <Picker.Item  value={inStock}></Picker.Item> */}
+                <Picker.Item label="select stock" value=""></Picker.Item>
+                <Picker.Item
+                  label="true"
+                  value="true"
+                ></Picker.Item>
+                <Picker.Item label="false" value="false"></Picker.Item>
+             
+              </Picker>
 
           <View style={styles.action}>
             <TextInput
@@ -232,14 +251,14 @@ const styles = StyleSheet.create({
     borderColor: "green",
   },
   text_footer: {
-    color: "05375a",
+    color: "#05375a",
     fontSize: 18,
   },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: "#05375a",
-    onhover: "none",
+  
   },
 
   action: {

@@ -14,7 +14,7 @@ export const globalstyles = StyleSheet.create({
   },
   containerStyle: {
     padding: 20,
-    backgroundImage: { background },
+    
     flex: 1,
   },
   touchButtonContainer: {

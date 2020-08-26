@@ -1,9 +1,9 @@
 {
   "allproducts": [
     {
-      "productName": "Cameraa",
+      "productName": "Camera",
       "productDescription": "High quality camera black colour",
-      "productPrice": "7900",
+      "productPrice": "79000",
       "quantity": "60",
       "categoryName": "Electronics",
       "inStock": "true",
@@ -11,34 +11,24 @@
       "id": 4
     },
     {
-      "productName": "Laptop",
-      "productDescription": "ASUS VivoBook 14 AMD Ryzen 3 3250U 14-inch FHD Compact",
-      "productPrice": "56787",
-      "quantity": "60",
+      "productName": "boAt Rockerz 450 Wireless",
+      "productDescription": "boAt Rockerz 450 Wireless",
+      "productPrice": "890",
+      "quantity": "7",
       "categoryName": "Electronics",
       "inStock": "true",
-      "productImage": "https://images-na.ssl-images-amazon.com/images/I/81b4nLdmuzL._SL1500_.jpg",
-      "id": 6
+      "productImage": "https://images-na.ssl-images-amazon.com/images/I/61ihz46SLOL._SL1500_.jpg",
+      "id": 9
     },
     {
-      "productName": "Headset",
-      "productDescription": "JBL C50HI in-Ear Headphones with Mic (Blue)",
-      "productPrice": "9000",
+      "productName": "House of Attires",
+      "productDescription": "House of Attires Hand Block Printed Crepe kids",
+      "productPrice": "2000",
       "quantity": "8",
-      "categoryName": "Electronics",
-      "inStock": "true",
-      "productImage": "https://images-na.ssl-images-amazon.com/images/I/617bCX7Y-aL._SL1500_.jpg",
-      "id": 7
-    },
-    {
-      "productName": "pro",
-      "productDescription": "kk",
-      "productPrice": "80",
-      "quantity": "80",
-      "categoryName": "Dress",
+      "categoryName": "Kids",
       "inStock": "true",
       "productImage": "https://images-na.ssl-images-amazon.com/images/I/51KpnzjcrLL._UL1500_.jpg",
-      "id": 8
+      "id": 10
     }
   ]
 }

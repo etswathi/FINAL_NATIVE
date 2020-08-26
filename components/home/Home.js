@@ -47,15 +47,15 @@ const styles = StyleSheet.create({
   focus: {
     borderColor: "green",
   },
-  text_footer: {
-    color: "05375a",
+  textFooter: {
+    color: "#05375a",
     fontSize: 18,
   },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: "#05375a",
-    onhover: "none",
+
   },
 
   action: {

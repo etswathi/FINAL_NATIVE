@@ -13,6 +13,7 @@ import {
 import { Card, Button } from "react-bootstrap";
 import { Image } from "react-native";
 import Axios from "axios";
+import { Picker } from "native-base";
 
 // import { Content} from "native-base";
 
@@ -26,6 +27,7 @@ export default function AddProductComponent(props) {
   const [productImage, setproductImage] = useState("");
   const [product, addProduct] = useState([]);
   const [show, setshow] = useState(false);
+  const [fieldnull, setfieldnull] = useState(false);
 
   //   let productdetails = props.route.params;
   //   console.log(productdetails);
@@ -33,75 +35,129 @@ export default function AddProductComponent(props) {
   //   console.log(props);
 
   const captureProductName = (value) => {
+    setfieldnull(false);
     setproductName(value);
   };
   const captureProductDescription = (value) => {
+    console.log("jiii" + value);
+    setfieldnull(false);
     setproductDescription(value);
   };
   const captureProductPrice = (value) => {
+    setfieldnull(false);
     setproductPrice(value);
   };
   const captureProductCategory = (value) => {
+    console.log("category" + value);
+    setfieldnull(false);
     setcategoryName(value);
   };
   const captureQuantity = (value) => {
+    setfieldnull(false);
     setquantity(value);
   };
   const captureInStock = (value) => {
+    setfieldnull(false);
     setinStock(value);
   };
   const captureProductImage = (value) => {
+    console.log(value)
+    setfieldnull(false);
     setproductImage(value);
   };
 
   const addFunction = () => {
-    let RequestBody = {
-      productName: productName,
-      productDescription: productDescription,
-      productPrice: productPrice,
-      quantity: quantity,
-      categoryName: categoryName,
-      inStock: inStock,
-      productImage: productImage,
-    };
+    if (
+      productName === "" ||
+      productDescription === "" ||
+      productPrice == "" ||
+      quantity == "" ||
+      categoryName == "" ||
+      inStock === "" ||
+      productImage === ""
+    ) {
+      setfieldnull(true);
+    }
+    if (
+      productName !== "" &&
+      productDescription !== "" &&
+      productPrice !== "" &&
+      quantity !== "" &&
+      categoryName !== "" &&
+      inStock !== "" &&
+      productImage !== ""
+    ) {
+      let RequestBody = {
+        productName: productName,
+        productDescription: productDescription,
+        productPrice: productPrice,
+        quantity: quantity,
+        categoryName: categoryName,
+        inStock: inStock,
+        productImage: productImage,
+      };
 
-    axios
-      .post("http://localhost:3000/allproducts/", RequestBody)
-      .then((res) => {
-        addProduct(res.data);
-        console.log(product);
-        console.log(res.data);
-        setshow(true);
-      });
+      axios
+        .post(" http://192.168.1.39:3000/allproducts", RequestBody)
+        .then((res) => {
+          addProduct(res.data);
+          console.log(product);
+          console.log(res.data);
+          setshow(true);
+        });
+    }
   };
   return (
     <ScrollView>
       <View style={globalstyles.containerStyle}>
-        {show && (
+        {fieldnull && (
           <View
             style={{
               width: "auto",
               height: "auto",
               border: "2px solid black",
+              backgroundColor: "maroon",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 25,
+                color: "white",
+                textAlign: "center",
+                fontFamily: "TimesNewRoman",
+              }}
+            >
+              Please fill all fields
+            </Text>
+          </View>
+        )}
+
+        {show && (
+          <View
+            style={{
+              width: "auto",
+              height: "auto",
+              borderWidth:2,
+              borderColor:"black" ,
               backgroundColor: "green",
             }}
           >
             <Text
               style={{
-                fontSize: "30px",
+                fontSize: 30,
                 color: "white",
                 textAlign: "center",
-                fontFamily: "TimesNewRoman",
+                // fontFamily: "Times New Roman",
               }}
             >
               Added!!!!
             </Text>
             <Text
               style={{
-                fontSize: "25px",
+                fontSize: 25,
                 color: "white",
                 textAlign: "center",
-                fontFamily: "TimesNewRoman",
+                // fontFamily: "Times New Roman",
               }}
             >
               Product Successfully added
@@ -111,13 +167,12 @@ export default function AddProductComponent(props) {
 
         {!show && (
           <View>
-           
             <View style={styles.footer}>
-            {/* <View style={styles.header}> */}
-             {/* <Image source={require('../assets/download.jpg')} style={styles.logo} resizeMode="stretch"></Image>  */}
-             {/* <Text style={styles.text_header}>Welcome</Text> */}
-            {/* </View> */}
-              
+              {/* <View style={styles.header}> */}
+              {/* <Image source={require('../assets/download.jpg')} style={styles.logo} resizeMode="stretch"></Image>  */}
+              {/* <Text style={styles.text_header}>Welcome</Text> */}
+              {/* </View> */}
+
               <View style={styles.action}>
                 <TextInput
                   placeholder="Product Name"
@@ -125,7 +180,7 @@ export default function AddProductComponent(props) {
                   style={styles.textInput}
                 ></TextInput>
               </View>
-              
+
               <View style={styles.action}>
                 <TextInput
                   placeholder="Product Description"
@@ -133,43 +188,64 @@ export default function AddProductComponent(props) {
                   style={styles.textInput}
                 ></TextInput>
               </View>
-            
+
               <View style={styles.action}>
                 <TextInput
                   placeholder="Product Price"
                   // numeric value
-                  // keyboardType={'numeric'}
+                  keyboardType={"numeric"}
                   onChangeText={captureProductPrice}
                   style={styles.textInput}
                 ></TextInput>
               </View>
-            
+              {/* 
               <View style={styles.action}>
                 <TextInput
                   placeholder="Product Categroy"
                   onChangeText={captureProductCategory}
                   style={styles.textInput}
                 ></TextInput>
-              </View>
-             
+              </View> */}
+
+              <Picker
+                style={styles.action}
+                onValueChange={captureProductCategory}
+                selectedValue={categoryName}
+                // onValueChange={(value,itemIndex)=>{captureProductCategory(value)}}
+              >
+                <Picker.Item label="select category" value=""></Picker.Item>
+                <Picker.Item
+                  label="Electronics"
+                  value="Electronics"
+                ></Picker.Item>
+                <Picker.Item label="Dress" value="Dress"></Picker.Item>
+                <Picker.Item label="Kids" value="Kids"></Picker.Item>
+              </Picker>
+
               <View style={styles.action}>
                 <TextInput
                   placeholder="Quantity"
-                  
-                    keyboardType={'numeric'}
+                  keyboardType={"numeric"}
                   onChangeText={captureQuantity}
                   style={styles.textInput}
                 ></TextInput>
               </View>
-              
-              <View style={styles.action}>
-                <TextInput
-                  placeholder="In Stock"
-                  onChangeText={captureInStock}
-                  style={styles.textInput}
-                ></TextInput>
-              </View>
-             
+
+              <Picker
+                style={styles.action}
+                onValueChange={captureInStock}
+                selectedValue={inStock}
+                // onValueChange={(value,itemIndex)=>{captureProductCategory(value)}}
+              >
+                <Picker.Item label="select stock" value=""></Picker.Item>
+                <Picker.Item
+                  label="true"
+                  value="true"
+                ></Picker.Item>
+                <Picker.Item label="false" value="false"></Picker.Item>
+               
+              </Picker>
+
               <View style={styles.action}>
                 <TextInput
                   placeholder="Image"
@@ -186,8 +262,6 @@ export default function AddProductComponent(props) {
             </View>
           </View>
         )}
-
-      
       </View>
     </ScrollView>
   );
@@ -198,14 +272,13 @@ const styles = StyleSheet.create({
     borderColor: "green",
   },
   text_footer: {
-    color: "05375a",
+    color: "#05375a",
     fontSize: 18,
   },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: "#05375a",
-    onhover: "none",
   },
 
   action: {
@@ -237,9 +310,8 @@ const styles = StyleSheet.create({
     flex: 3,
     backgroundColor: "#fff",
     borderRadius: 30,
-   
+
     paddingVertical: 90,
     paddingHorizontal: 40,
-    
   },
 });

@@ -7,7 +7,7 @@ import ProductsComponent from "../components/products/allproducts/Products";
 import PdpComponent from "../components/products/pdp/pdp";
 import AddProductComponent from "../components/products/proactions/addproduct/addproduct";
 import UpdateProductComponent from "../components/products/proactions/updateproduct/updateproduct";
-import BaseComponent from "../components/base";
+
 
 const Stack = createStackNavigator();
 
@@ -48,7 +48,7 @@ function MyStackNavigator() {
           name="UpdateProduct"
           component={UpdateProductComponent}
         ></Stack.Screen>
-        <Stack.Screen name="Base" component={BaseComponent}></Stack.Screen>
+       
       </Stack.Navigator>
     </NavigationContainer>
   );
